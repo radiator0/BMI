@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="black_overlay">#66000000</color>
+
+    <color name="underweight">#CDDC39</color>
+    <color name="healty_weight">#4CAF50</color>
+    <color name="overweight">#F44336</color>
+
+    <color name="author_text_color">#ffffff</color>
+    <color name="description_text_color">#ffffff</color>
+    <color name="author_background">#066d70</color>
+</resources>

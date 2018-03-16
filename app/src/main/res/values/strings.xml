@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">BMI</string>
+    <string name="title_activity_author">Author</string>
+    <string name="mass_key">saved_mass</string>
+    <string name="height_key">saved_height</string>
+    <string name="switch_key">saved_switch</string>
+    <string name="input_press_message"><![CDATA[Input data & press button]]></string>
+    <string name="bad_values_message">Bad values</string>
+    <string name="input_error_message">Input error</string>
+    <string name="bmi_message_key">BMI</string>
+    <string name="default_mass_val" />
+    <string name="default_height_val" />
+    <string name="mass_name">Mass</string>
+    <string name="height_name">Height</string>
+    <string name="countbtn_value">Count</string>
+    <string name="switch_label">Unit</string>
+    <string name="switch_off_msg">kg/m</string>
+    <string name="switch_on_msg">lb/ft</string>
+    <string name="bmi_pattern">#.00</string>
+    <string name="bmi_header">BMI:</string>
+    <string name="default_bmi_value">20.12</string>
+    <string name="author">Krzysztof Pilarczyk</string>
+    <string name="description">Hi. I\'m professional android developer with big one day experience.Visit my github: github.com/radiator0</string>
+    <string name="author_photo_desc">author_photo</string>
+    <string name="option_author_text">About author</string>
+    <string name="option_save_text">save</string>
+</resources>

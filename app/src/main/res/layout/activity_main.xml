@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="krzysiek.bmi.activities.MainActivity">
+
+    <TextView
+        android:id="@+id/massheader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:labelFor="@+id/mass"
+        android:text="@string/mass_name"
+        android:textSize="@dimen/mass_header_size"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="51dp" />
+
+    <EditText
+        android:id="@+id/mass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textSize="@dimen/mass_text_size" />
+
+    <TextView
+        android:id="@+id/heightheader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/height"
+        android:text="@string/height_name"
+        android:textSize="@dimen/height_header_text_size" />
+
+    <EditText
+        android:id="@+id/height"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textSize="@dimen/height_text_size" />
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="@string/input_press_message"
+        android:textAlignment="center"
+        android:textSize="@dimen/message_text_size" />
+
+    <Button
+        android:id="@+id/count"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/countbtn_value"
+        android:textSize="@dimen/count_text_size" />
+
+    <Switch
+        android:id="@+id/unit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:checked="false"
+        android:gravity="end"
+        android:text="@string/switch_label"
+        android:textOff="@string/switch_off_msg"
+        android:textOn="@string/switch_on_msg"
+        android:textSize="@dimen/unit_text_size"
+        tools:checked="false" />
+
+</LinearLayout>
