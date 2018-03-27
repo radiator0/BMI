@@ -5,6 +5,8 @@ package krzysiek.bmi.calculation;
  */
 
 public abstract class BMI {
+    private static final double MIN_HEALTHY_BMI = 18.5;
+    private static final double MAX_HEALTHY_BMI = 25.0;
     private static final String ERROR_MESSAGE = "Invalid data";
 
     private double mass;
@@ -37,4 +39,15 @@ public abstract class BMI {
     private boolean dataAreValid() {
         return checkMass() && checkHeight();
     }
+
+    public static BmiClassification getClassification(double bmi){
+        if(bmi < MIN_HEALTHY_BMI){
+            return BmiClassification.UNDERWEIGHT;
+        }else if(bmi<=MAX_HEALTHY_BMI){
+            return BmiClassification.NORMAL_WEIGHT;
+        }else{
+            return BmiClassification.OVERWEIGHT;
+        }
+    }
+
 }

@@ -1,6 +1,7 @@
 package krzysiek.bmi.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText editHeight;
     private TextView viewMessage;
     private Switch switchUnit;
+    private Button buttonCount;
 
     private BMI bmi;
 
@@ -57,17 +59,15 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Button buttonCount = findViewById(R.id.count);
+    private void initView(){
+        buttonCount = findViewById(R.id.count);
         editMass = findViewById(R.id.mass);
         editHeight = findViewById(R.id.height);
         viewMessage = findViewById(R.id.message);
         switchUnit = findViewById(R.id.unit);
+    }
 
+    private void setDefaultValues(){
         SharedPreferences sharedPref = getPreferences(Activity.MODE_PRIVATE);
         String defaultMass = sharedPref.getString(getResources().getString(R.string.mass_key), getString(R.string.default_mass_val));
         String defaultHeight = sharedPref.getString(getResources().getString(R.string.height_key), getString(R.string.default_height_val));
@@ -75,42 +75,9 @@ public class MainActivity extends AppCompatActivity {
         editMass.setText(defaultMass);
         editHeight.setText(defaultHeight);
         switchUnit.setChecked(defaultSwitchPosition);
+    }
 
-        final Intent intent = new Intent(this,ScoreActivity.class);
-        buttonCount.setOnClickListener(
-                new View.OnClickListener() {
-                    public void onClick(View view) {
-                        String massString = editMass.getText().toString();
-                        String heightString = editHeight.getText().toString();
-
-                        String output;
-                        if(massString.equals("") || heightString.equals("")){
-                            output = getString(R.string.input_error_message);
-                        }else{
-                            double mass = Double.parseDouble(massString);
-                            double height = Double.parseDouble(heightString);
-
-                            if(switchUnit.isChecked()){
-                                bmi = new BmiForFtLbs(mass,height);
-                            }else{
-                                bmi = new BmiForKgM(mass,height);
-                            }
-
-                            try{
-                                bmi.calculateBmi();
-                                Double score = bmi.calculateBmi();
-                                output = getString(R.string.input_press_message);
-                                intent.putExtra(getString(R.string.bmi_message_key),score.toString());
-                                startActivity(intent);
-                            }catch(IllegalArgumentException e){
-                                output = getString(R.string.bad_values_message);
-                            }
-                        }
-                        viewMessage.setText(output);
-                    }
-                }
-        );
-
+    private void setListeners(){
         editMass.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
                 setStartMessage();
@@ -133,6 +100,52 @@ public class MainActivity extends AppCompatActivity {
                 resetInput();
             }
         });
+
+        buttonCount.setOnClickListener(
+                new View.OnClickListener() {
+                    public void onClick(View view) {
+                        countAndSetResult();
+                    }
+                }
+        );
+    }
+
+    private void countAndSetResult(){
+        String massString = editMass.getText().toString();
+        String heightString = editHeight.getText().toString();
+
+        String output;
+        if(massString.equals("") || heightString.equals("")){
+            output = getString(R.string.input_error_message);
+        }else{
+            double mass = Double.parseDouble(massString);
+            double height = Double.parseDouble(heightString);
+
+            if(switchUnit.isChecked()){
+                bmi = new BmiForFtLbs(mass,height);
+            }else{
+                bmi = new BmiForKgM(mass,height);
+            }
+
+            try{
+                bmi.calculateBmi();
+                Double score = bmi.calculateBmi();
+                output = getString(R.string.input_press_message);
+                ScoreActivity.start(MainActivity.this, score);
+            }catch(IllegalArgumentException e){
+                output = getString(R.string.bad_values_message);
+            }
+        }
+        viewMessage.setText(output);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initView();
+        setDefaultValues();
+        setListeners();
     }
 
     private void setStartMessage() {
